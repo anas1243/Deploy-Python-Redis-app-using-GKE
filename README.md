@@ -2,7 +2,7 @@
 
 This Project aimed to Deploy A containerized python-redis web application on A GKE private cluster
 
-## Steps Applyed
+## Steps applied
 
 ### Infrastructure Provisioning using terraform
 
@@ -14,4 +14,18 @@ This Project aimed to Deploy A containerized python-redis web application on A G
 6. Assigned the needed roles for both of them (container.admin and storage.admin)
 7. Provisioned the infrastructure using the following command
 
-`terraform apply --var-file terraform/var-files/prod.tfvars`
+- `cd terraform`
+- `terraform apply --var-file var-files/prod.tfvars`
+
+### Dockerize The Web Application
+
+1. Cloned the demo app repo from git git
+
+- `git clone https://github.com/atefhares/DevOps-Challenge-Demo-Code.git`
+
+2. Made the docker file after reading the documentation carefully
+3. Built,auth, and push the application image
+
+- `docker build . -t gcr.io/red-forklift-366019/iti-gcp-project`
+- `gcloud auth configure-docker`
+- `docker push gcr.io/red-forklift-366019/iti-gcp-project`
