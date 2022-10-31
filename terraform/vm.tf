@@ -1,7 +1,11 @@
 resource "google_compute_instance" "bastion-vm" {
   name         = "${var.env}-bastion-vm"
-  machine_type = "${var.vm-type}"
+  machine_type = var.vm-type
   zone         = "${var.private-subnet1-region}-b"
+  service_account {
+    email  = "${google_service_account.cluster-svc-account.email}"
+    scopes = ["cloud-platform"]
+  }
 
 
   boot_disk {
@@ -16,6 +20,5 @@ resource "google_compute_instance" "bastion-vm" {
     # No public IP will be assigned by default if we don't mention
   }
 
-
-
+    metadata_startup_script = "sudo apt-get install kubectl && sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin"
 }

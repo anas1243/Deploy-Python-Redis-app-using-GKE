@@ -19,6 +19,10 @@ variable "env" {
 }
 
 variable "vm-type" {
-    type = string
+  type = string
 
+}
+
+variable "project-id" {
+  type = string
 }

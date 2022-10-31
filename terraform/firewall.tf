@@ -7,7 +7,7 @@ resource "google_compute_firewall" "iti-firewall-ssh" {
     ports    = ["22"]
   }
 
-  direction = "INGRESS"
+  direction     = "INGRESS"
   source_ranges = ["35.235.240.0/20"]
 }
 
@@ -20,6 +20,6 @@ resource "google_compute_firewall" "iti-firewall-http" {
     ports    = ["80"]
   }
 
-  direction = "INGRESS"
+  direction     = "INGRESS"
   source_ranges = ["0.0.0.0/0"]
 }

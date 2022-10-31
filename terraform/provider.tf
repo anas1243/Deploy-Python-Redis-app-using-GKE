@@ -1,4 +1,4 @@
 provider "google" {
-  project     = "red-forklift-366019"
-  region      = "us-east1"
+  project = "${var.project-id}"
+  region  = "us-east1"
 }
