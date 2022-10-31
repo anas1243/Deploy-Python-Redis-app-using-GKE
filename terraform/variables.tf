@@ -17,3 +17,8 @@ variable "private-subnet2-region" {
 variable "env" {
   type = string
 }
+
+variable "vm-type" {
+    type = string
+
+}
