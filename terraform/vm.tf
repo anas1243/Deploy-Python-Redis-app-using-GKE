@@ -20,5 +20,5 @@ resource "google_compute_instance" "bastion-vm" {
     # No public IP will be assigned by default if we don't mention
   }
 
-  metadata_startup_script = "sudo apt-get install kubectl && sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin && sudo apt install git"
+  metadata_startup_script = "sudo apt-get install kubectl && sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin && sudo apt-get install git -y"
 }
