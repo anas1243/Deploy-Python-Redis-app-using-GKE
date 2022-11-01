@@ -1,15 +1,20 @@
 resource "google_container_cluster" "iti-gke" {
   name       = "${var.env}-iti-gke"
+  location   = var.private-subnet2-region
+
+  networking_mode = "VPC_NATIVE"
   network    = google_compute_network.iti-network.name
   subnetwork = google_compute_subnetwork.GKE-private-subnet.name
-  location   = var.private-subnet2-region
 
   remove_default_node_pool = true
   initial_node_count       = 1
   private_cluster_config {
-    enable_private_endpoint = false
+    enable_private_endpoint = true
     enable_private_nodes    = true
     master_ipv4_cidr_block  = "172.16.0.0/28"
+    master_global_access_config {
+      enabled = true
+    }
 
   }
   master_authorized_networks_config {

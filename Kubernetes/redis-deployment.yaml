@@ -19,3 +19,7 @@ spec:
           image: redis
           ports:
             - containerPort: 6379
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "1"
