@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: load-balancer
+  name: load-balancer-jenkins
 spec:
   type: LoadBalancer
   selector:
-    name: python-app
+    name: jenkins-master
   ports:
     - protocol: TCP
-      port: 8000
-      targetPort: 8000
+      port: 8080
+      targetPort: 8080

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: jenkins-master
+  template:
+    metadata:
+      labels:
+        name: jenkins-master
+    spec:
+      containers:
+        - name: jenkins-master
+          image: gcr.io/red-forklift-366019/jenkins-docker-master
+          ports:
+            - containerPort: 8080
+            - containerPort: 5000
