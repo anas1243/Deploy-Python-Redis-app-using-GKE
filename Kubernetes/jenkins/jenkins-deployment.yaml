@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jenkins-deployment
+  name: jenkins-master
+  namespace: jenkins
 spec:
   replicas: 1
   selector:
@@ -12,18 +13,17 @@ spec:
       labels:
         name: jenkins-master
     spec:
+      serviceAccountName: jenkins-admin
       containers:
         - name: jenkins-master
-          image: gcr.io/red-forklift-366019/jenkins-docker-master
+          image: anas1243/jenkins-with-docker
           ports:
-            - containerPort: 8080
-            - containerPort: 5000
+            - name: httpport
+              containerPort: 8080
           volumeMounts:
-            - mountPath: /var/jenkins_home
-              name: jenkins-home
+            - name: sock
+              mountPath: /var/run/docker.sock
       volumes:
-        - name: jenkins-home
+        - name: sock
           hostPath:
-            # directory location on host
-            path: jenkins
-            type: DirectoryOrCreate
+            path: /var/run/docker.sock
