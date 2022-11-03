@@ -17,6 +17,11 @@ spec:
       containers:
         - name: jenkins-master
           image: anas1243/jenkins-with-docker
+          securityContext:
+            allowPrivilegeEscalation: true
+            privileged: true
+            readOnlyRootFilesystem: false
+            runAsUser: 0
           ports:
             - name: httpport
               containerPort: 8080
