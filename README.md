@@ -1,6 +1,10 @@
-# Deploying Python-Redis app on GCP using GKE
+# Deploying Python-Redis app on GCP private Cluster with jenkins
 
-This Project aimed to Deploy A containerized python-Redis web application on A GKE private cluster
+This Is Part One
+
+Part Two: https://github.com/anas1243/Deploy-python-redis-app-on-GKE-using-jenkins
+
+This Project aimed to Deploy A containerized python-Redis web application on A GKE private cluster with jenkins deployment on another namespace
 
 ## Steps applied
 
@@ -19,18 +23,14 @@ This Project aimed to Deploy A containerized python-Redis web application on A G
 
 ### Dockerize The Web Application
 
-1. Cloned the demo app repo from git git
-
-- `git clone https://github.com/atefhares/DevOps-Challenge-Demo-Code.git`
-
-2. Made the docker file after reading the documentation carefully
+1. `cd jenkins-image`
+2. Made the docker file after reading the documentation of jenkins carefully
 3. Built,auth, and push the application image
 
-- `docker build . -t gcr.io/red-forklift-366019/iti-gcp-project`
-- `gcloud auth configure-docker`
-- `docker push gcr.io/red-forklift-366019/iti-gcp-project`
+- `docker build . -t anas1243/jenkins-with-docker`
+- `docker push anas1243/jenkins-with-docker`
 
-### Deploy The Web Application
+### Deploy The Jenkins Deployment
 
 1. Connected to the `bastion VM` via `ssh`
 
@@ -53,3 +53,19 @@ kubectl get all -n jenkins
 ```
 
 - ![Deployed the `web application`](images/jenkins-deployment.png)
+
+5. Signed in To `jenkins dashboard` using the `External IP` of the `loadbalancer` mention in the previous screenshoot
+
+- ![Jenkins Signin`](images/jenkins-signIn.png)
+
+6. Added Docker Credintials
+
+- ![Docker Credintials`](images/docker-cred.png)
+
+7. Configured A Pipeline with a remote Jenkinsfile
+
+- ![PipeLine Configurations`](images/pipelineConfig.png)
+
+### Notice: The Following Repo Containing The Python Application Deployment
+
+Repo: https://github.com/anas1243/Deploy-python-redis-app-on-GKE-using-jenkins
