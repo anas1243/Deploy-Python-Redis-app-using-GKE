@@ -40,10 +40,16 @@ This Project aimed to Deploy A containerized python-Redis web application on A G
 
 - ![Connected to the GKE Cluster via Bastion](images/connect-to-cluster-via-bastion.png)
 
-1. cloned my code from `GitHub` to the `Bastion VM`
+3. cloned my code from `GitHub` to the `Bastion VM`
 
-- ![Clone my code from GitHub to the Bastion](images/clone-my-code-to-bastion.png)
+- ![Clone my code from GitHub to the Bastion](images/code-clone.png)
 
-1. Deployed the `web application`
+4. Deployed the `jenkins Deployment`
 
-- ![Deployed the `web application`](images/Deploy-the-web-app.png)
+```
+cd provision-GKE-private-cluster-and-jenkins-deployment-using-terraform
+kubectl apply -f Kubernetes/jenkins --recursive -n jenkins
+kubectl get all -n jenkins
+```
+
+- ![Deployed the `web application`](images/jenkins-deployment.png)
